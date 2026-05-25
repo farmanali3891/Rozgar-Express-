@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Rozgar Express - Live Jobs</title>
+  <title>Rozgar Express</title>
   <style>
     body { font-family: Arial; background:#f2f4f8; margin:0; }
     .container { max-width:800px; margin:auto; padding:20px; }
@@ -25,56 +25,41 @@
       padding:8px 14px;
       border-radius:6px;
       cursor:pointer;
-      margin-top:10px;
     }
   </style>
 </head>
 
 <body>
 <div class="container">
-  <h1 style="text-align:center;">Rozgar Express 🚀 Live Jobs</h1>
+  <h1 style="text-align:center;">Rozgar Express 🚀</h1>
 
-  <div id="jobs">Loading live jobs...</div>
+  <div class="card">
+    <div class="title">Procurement Manager</div>
+    <div class="company">TRDP</div>
+    <div class="country">Pakistan</div>
+    <button onclick="window.open('https://www.rozee.pk/job-search?keywords=procurement%20manager')">
+      View & Apply
+    </button>
+  </div>
+
+  <div class="card">
+    <div class="title">Warehouse Supervisor</div>
+    <div class="company">Al Futtaim Group</div>
+    <div class="country">Dubai</div>
+    <button onclick="window.open('https://www.linkedin.com/jobs/search/?keywords=warehouse%20supervisor%20dubai')">
+      View & Apply
+    </button>
+  </div>
+
+  <div class="card">
+    <div class="title">Driver</div>
+    <div class="company">Saudi Logistics</div>
+    <div class="country">Saudi Arabia</div>
+    <button onclick="window.open('https://www.bayt.com/en/saudi-arabia/jobs/search/?q=driver')">
+      View & Apply
+    </button>
+  </div>
+
 </div>
-
-<script>
-async function loadJobs() {
-
-  const url = "https://jsearch.p.rapidapi.com/search?query=jobs%20Pakistan%20Dubai%20Saudi&num_pages=1";
-
-  const options = {
-    method: "GET",
-    headers: {
-      "X-RapidAPI-Key": "PASTE_YOUR_API_KEY_HERE",
-      "X-RapidAPI-Host": "jsearch.p.rapidapi.com"
-    }
-  };
-
-  try {
-    const res = await fetch(url, options);
-    const data = await res.json();
-
-    document.getElementById("jobs").innerHTML =
-      data.data.slice(0, 10).map(job => `
-        <div class="card">
-          <div class="title">${job.job_title}</div>
-          <div class="company">${job.employer_name || "Company N/A"}</div>
-          <div class="country">${job.job_country || "Global"}</div>
-
-          <button onclick="window.open('${job.job_apply_link}')">
-            View & Apply
-          </button>
-        </div>
-      `).join('');
-
-  } catch (err) {
-    document.getElementById("jobs").innerHTML =
-      "Error loading jobs. Check API key.";
-  }
-}
-
-loadJobs();
-</script>
-
 </body>
 </html>
