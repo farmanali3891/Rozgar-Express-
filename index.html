@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Rozgar Express</title>
+</head>
+<body>
+  <h1>Rozgar Express 🚀</h1>
+
+  <input id="search" placeholder="Search jobs..." onkeyup="filterJobs()" />
+
+  <div id="jobs"></div>
+
+  <script>
+    const jobs = [
+      { title: "Driver Job", location: "Dubai", link: "https://linkedin.com" },
+      { title: "Warehouse Assistant", location: "Saudi", link: "https://bayt.com" },
+      { title: "Office Job", location: "Pakistan", link: "https://rozee.pk" }
+    ];
+
+    function showJobs(list){
+      document.getElementById("jobs").innerHTML =
+        list.map(j =>
+          `<div>
+            <h3>${j.title}</h3>
+            <p>${j.location}</p>
+            <button onclick="window.open('${j.link}')">View & Apply</button>
+          </div>`
+        ).join('');
+    }
+
+    function filterJobs(){
+      const val = document.getElementById("search").value.toLowerCase();
+      showJobs(jobs.filter(j =>
+        j.title.toLowerCase().includes(val) ||
+        j.location.toLowerCase().includes(val)
+      ));
+    }
+
+    showJobs(jobs);
+  </script>
+</body>
+</html>
