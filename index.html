@@ -1,30 +1,65 @@
-const express = require("express");
-const cors = require("cors");
-const fetch = require("node-fetch");
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Rozgar Express</title>
+  <style>
+    body { font-family: Arial; background:#f2f4f8; margin:0; }
+    .container { max-width:800px; margin:auto; padding:20px; }
 
-const app = express();
-app.use(cors());
+    .card {
+      background:white;
+      padding:18px;
+      margin:15px 0;
+      border-radius:12px;
+      box-shadow:0 3px 10px rgba(0,0,0,0.08);
+    }
 
-const API_KEY = "PASTE_YOUR_RAPIDAPI_KEY";
+    .title { font-size:18px; font-weight:bold; }
+    .company { color:#555; margin:5px 0; }
+    .country { color:#888; font-size:13px; }
 
-app.get("/jobs", async (req, res) => {
-  try {
-    const url =
-      "https://jsearch.p.rapidapi.com/search?query=jobs%20Pakistan%20Dubai%20Saudi&num_pages=1";
+    button {
+      background:#0b5ed7;
+      color:white;
+      border:none;
+      padding:8px 14px;
+      border-radius:6px;
+      cursor:pointer;
+    }
+  </style>
+</head>
 
-    const response = await fetch(url, {
-      method: "GET",
-      headers: {
-        "X-RapidAPI-Key": API_KEY,
-        "X-RapidAPI-Host": "jsearch.p.rapidapi.com",
-      },
-    });
+<body>
+<div class="container">
+  <h1 style="text-align:center;">Rozgar Express 🚀</h1>
 
-    const data = await response.json();
-    res.json(data);
-  } catch (err) {
-    res.status(500).json({ error: "Failed to fetch jobs" });
-  }
-});
+  <div class="card">
+    <div class="title">Procurement Manager</div>
+    <div class="company">Search Live Jobs</div>
+    <div class="country">Pakistan</div>
+    <button onclick="window.open('https://www.linkedin.com/jobs/search/?keywords=procurement%20manager%20pakistan')">
+      View Real Jobs
+    </button>
+  </div>
 
-app.listen(3000, () => console.log("Server running on port 3000"));
+  <div class="card">
+    <div class="title">Warehouse Supervisor</div>
+    <div class="company">Search Live Jobs</div>
+    <div class="country">Dubai</div>
+    <button onclick="window.open('https://www.bayt.com/en/uae/jobs/search/?q=warehouse%20supervisor')">
+      View Real Jobs
+    </button>
+  </div>
+
+  <div class="card">
+    <div class="title">Driver Jobs</div>
+    <div class="company">Search Live Jobs</div>
+    <div class="country">Saudi Arabia</div>
+    <button onclick="window.open('https://www.indeed.com/jobs?q=driver&l=Saudi+Arabia')">
+      View Real Jobs
+    </button>
+  </div>
+
+</div>
+</body>
+</html>
