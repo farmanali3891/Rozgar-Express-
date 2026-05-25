@@ -3,10 +3,11 @@
 <head>
   <title>Rozgar Express</title>
   <style>
-    body { font-family: Arial; margin: 0; background:#f4f4f4; }
+    body { font-family: Arial; margin:0; background:#f4f4f4; }
     .container { max-width:700px; margin:auto; padding:20px; }
-    .btn { padding:10px; margin:5px; cursor:pointer; border:none; border-radius:5px; }
-    .job { background:white; padding:15px; margin:10px 0; border-radius:10px; }
+    .card { background:white; padding:15px; margin:10px 0; border-radius:10px; }
+    button { padding:10px; margin:5px; cursor:pointer; }
+    h1 { text-align:center; }
   </style>
 </head>
 <body>
@@ -14,77 +15,32 @@
 <div class="container">
   <h1>Rozgar Express 🚀</h1>
 
-  <input id="search" placeholder="Search jobs..." onkeyup="filterJobs()" style="width:100%;padding:10px"/>
+  <p>🔎 Auto Job Feeds (Latest Jobs)</p>
 
-  <br><br>
+  <div class="card">
+    <h3>🇵🇰 Pakistan Jobs</h3>
+    <button onclick="openLink('https://pk.indeed.com/jobs?q=jobs')">Indeed Pakistan</button>
+    <button onclick="openLink('https://www.linkedin.com/jobs/search/?keywords=jobs%20pakistan')">LinkedIn Pakistan</button>
+  </div>
 
-  <button class="btn" onclick="setFilter('all')">All</button>
-  <button class="btn" onclick="setFilter('pakistan')">Pakistan</button>
-  <button class="btn" onclick="setFilter('dubai')">Dubai</button>
-  <button class="btn" onclick="setFilter('saudi')">Saudi</button>
+  <div class="card">
+    <h3>🇦🇪 Dubai Jobs</h3>
+    <button onclick="openLink('https://www.linkedin.com/jobs/search/?keywords=jobs%20dubai')">LinkedIn Dubai</button>
+    <button onclick="openLink('https://www.bayt.com/en/uae/jobs/')">Bayt UAE</button>
+  </div>
 
-  <div id="jobs"></div>
+  <div class="card">
+    <h3>🇸🇦 Saudi Jobs</h3>
+    <button onclick="openLink('https://www.linkedin.com/jobs/search/?keywords=jobs%20saudi%20arabia')">LinkedIn Saudi</button>
+    <button onclick="openLink('https://www.bayt.com/en/saudi-arabia/jobs/')">Bayt Saudi</button>
+  </div>
+
 </div>
 
 <script>
-let currentFilter = "all";
-
-const jobs = [
-  {
-    title: "Driver Jobs",
-    country: "dubai",
-    links: [
-      "https://www.linkedin.com/jobs/search/?keywords=driver%20dubai",
-      "https://www.bayt.com/en/international-jobs/search/?q=driver"
-    ]
-  },
-  {
-    title: "Warehouse Assistant",
-    country: "saudi",
-    links: [
-      "https://www.linkedin.com/jobs/search/?keywords=warehouse%20saudi",
-      "https://www.bayt.com/en/international-jobs/search/?q=warehouse"
-    ]
-  },
-  {
-    title: "Office Jobs",
-    country: "pakistan",
-    links: [
-      "https://www.rozee.pk/job-search",
-      "https://www.linkedin.com/jobs/search/?keywords=office%20jobs%20pakistan"
-    ]
-  }
-];
-
-function render(list){
-  document.getElementById("jobs").innerHTML =
-    list.map(j => `
-      <div class="job">
-        <h3>${j.title}</h3>
-        <p>${j.country.toUpperCase()}</p>
-        <button onclick="window.open('${j.links[0]}')">LinkedIn Apply</button>
-        <button onclick="window.open('${j.links[1]}')">Bayt / Other</button>
-      </div>
-    `).join('');
+function openLink(url){
+  window.open(url, "_blank");
 }
-
-function setFilter(f){
-  currentFilter = f;
-  filterJobs();
-}
-
-function filterJobs(){
-  const s = document.getElementById("search").value.toLowerCase();
-
-  let filtered = jobs.filter(j =>
-    (currentFilter === "all" || j.country === currentFilter) &&
-    j.title.toLowerCase().includes(s)
-  );
-
-  render(filtered);
-}
-
-render(jobs);
 </script>
 
 </body>
