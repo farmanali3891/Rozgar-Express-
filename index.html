@@ -4,10 +4,29 @@
   <title>Rozgar Express</title>
   <style>
     body { font-family: Arial; margin:0; background:#f4f4f4; }
-    .container { max-width:700px; margin:auto; padding:20px; }
-    .card { background:white; padding:15px; margin:10px 0; border-radius:10px; }
-    button { padding:10px; margin:5px; cursor:pointer; }
+    .container { max-width:800px; margin:auto; padding:20px; }
     h1 { text-align:center; }
+
+    .card {
+      background:white;
+      padding:15px;
+      margin:10px 0;
+      border-radius:10px;
+      box-shadow:0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .title { font-size:18px; font-weight:bold; }
+    .company { color:gray; margin:5px 0; }
+    .country { font-weight:bold; margin-bottom:10px; }
+
+    button {
+      padding:8px 12px;
+      cursor:pointer;
+      border:none;
+      border-radius:5px;
+      background:green;
+      color:white;
+    }
   </style>
 </head>
 <body>
@@ -15,33 +34,37 @@
 <div class="container">
   <h1>Rozgar Express 🚀</h1>
 
-  <p>🔎 Auto Job Feeds (Latest Jobs)</p>
-
+  <!-- Pakistan -->
   <div class="card">
-    <h3>🇵🇰 Pakistan Jobs</h3>
-    <button onclick="openLink('https://pk.indeed.com/jobs?q=jobs')">Indeed Pakistan</button>
-    <button onclick="openLink('https://www.linkedin.com/jobs/search/?keywords=jobs%20pakistan')">LinkedIn Pakistan</button>
+    <div class="title">Office Assistant</div>
+    <div class="company">Rozee.pk Hiring Partner</div>
+    <div class="country">🇵🇰 Pakistan</div>
+    <button onclick="window.open('https://pk.indeed.com/jobs?q=office%20assistant')">
+      View & Apply (Indeed)
+    </button>
   </div>
 
+  <!-- Dubai -->
   <div class="card">
-    <h3>🇦🇪 Dubai Jobs</h3>
-    <button onclick="openLink('https://www.linkedin.com/jobs/search/?keywords=jobs%20dubai')">LinkedIn Dubai</button>
-    <button onclick="openLink('https://www.bayt.com/en/uae/jobs/')">Bayt UAE</button>
+    <div class="title">Warehouse Helper</div>
+    <div class="company">Dubai Logistics Co.</div>
+    <div class="country">🇦🇪 Dubai</div>
+    <button onclick="window.open('https://www.linkedin.com/jobs/search/?keywords=warehouse%20dubai')">
+      View & Apply (LinkedIn)
+    </button>
   </div>
 
+  <!-- Saudi -->
   <div class="card">
-    <h3>🇸🇦 Saudi Jobs</h3>
-    <button onclick="openLink('https://www.linkedin.com/jobs/search/?keywords=jobs%20saudi%20arabia')">LinkedIn Saudi</button>
-    <button onclick="openLink('https://www.bayt.com/en/saudi-arabia/jobs/')">Bayt Saudi</button>
+    <div class="title">Driver Job</div>
+    <div class="company">Saudi Transport Co.</div>
+    <div class="country">🇸🇦 Saudi Arabia</div>
+    <button onclick="window.open('https://www.bayt.com/en/saudi-arabia/jobs/search/?q=driver')">
+      View & Apply (Bayt)
+    </button>
   </div>
 
 </div>
-
-<script>
-function openLink(url){
-  window.open(url, "_blank");
-}
-</script>
 
 </body>
 </html>
