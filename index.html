@@ -2,41 +2,90 @@
 <html>
 <head>
   <title>Rozgar Express</title>
+  <style>
+    body { font-family: Arial; margin: 0; background:#f4f4f4; }
+    .container { max-width:700px; margin:auto; padding:20px; }
+    .btn { padding:10px; margin:5px; cursor:pointer; border:none; border-radius:5px; }
+    .job { background:white; padding:15px; margin:10px 0; border-radius:10px; }
+  </style>
 </head>
 <body>
+
+<div class="container">
   <h1>Rozgar Express 🚀</h1>
 
-  <input id="search" placeholder="Search jobs..." onkeyup="filterJobs()" />
+  <input id="search" placeholder="Search jobs..." onkeyup="filterJobs()" style="width:100%;padding:10px"/>
+
+  <br><br>
+
+  <button class="btn" onclick="setFilter('all')">All</button>
+  <button class="btn" onclick="setFilter('pakistan')">Pakistan</button>
+  <button class="btn" onclick="setFilter('dubai')">Dubai</button>
+  <button class="btn" onclick="setFilter('saudi')">Saudi</button>
 
   <div id="jobs"></div>
+</div>
 
-  <script>
-    const jobs = [
-      { title: "Driver Job", location: "Dubai", link: "https://linkedin.com" },
-      { title: "Warehouse Assistant", location: "Saudi", link: "https://bayt.com" },
-      { title: "Office Job", location: "Pakistan", link: "https://rozee.pk" }
-    ];
+<script>
+let currentFilter = "all";
 
-    function showJobs(list){
-      document.getElementById("jobs").innerHTML =
-        list.map(j =>
-          `<div>
-            <h3>${j.title}</h3>
-            <p>${j.location}</p>
-            <button onclick="window.open('${j.link}')">View & Apply</button>
-          </div>`
-        ).join('');
-    }
+const jobs = [
+  {
+    title: "Driver Jobs",
+    country: "dubai",
+    links: [
+      "https://www.linkedin.com/jobs/search/?keywords=driver%20dubai",
+      "https://www.bayt.com/en/international-jobs/search/?q=driver"
+    ]
+  },
+  {
+    title: "Warehouse Assistant",
+    country: "saudi",
+    links: [
+      "https://www.linkedin.com/jobs/search/?keywords=warehouse%20saudi",
+      "https://www.bayt.com/en/international-jobs/search/?q=warehouse"
+    ]
+  },
+  {
+    title: "Office Jobs",
+    country: "pakistan",
+    links: [
+      "https://www.rozee.pk/job-search",
+      "https://www.linkedin.com/jobs/search/?keywords=office%20jobs%20pakistan"
+    ]
+  }
+];
 
-    function filterJobs(){
-      const val = document.getElementById("search").value.toLowerCase();
-      showJobs(jobs.filter(j =>
-        j.title.toLowerCase().includes(val) ||
-        j.location.toLowerCase().includes(val)
-      ));
-    }
+function render(list){
+  document.getElementById("jobs").innerHTML =
+    list.map(j => `
+      <div class="job">
+        <h3>${j.title}</h3>
+        <p>${j.country.toUpperCase()}</p>
+        <button onclick="window.open('${j.links[0]}')">LinkedIn Apply</button>
+        <button onclick="window.open('${j.links[1]}')">Bayt / Other</button>
+      </div>
+    `).join('');
+}
 
-    showJobs(jobs);
-  </script>
+function setFilter(f){
+  currentFilter = f;
+  filterJobs();
+}
+
+function filterJobs(){
+  const s = document.getElementById("search").value.toLowerCase();
+
+  let filtered = jobs.filter(j =>
+    (currentFilter === "all" || j.country === currentFilter) &&
+    j.title.toLowerCase().includes(s)
+  );
+
+  render(filtered);
+}
+
+render(jobs);
+</script>
+
 </body>
 </html>
