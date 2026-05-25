@@ -1,29 +1,30 @@
-<div class="card">
-  <div class="title">Procurement Manager</div>
-  <div class="company">TRDP / NGO Sector</div>
-  <div class="country">Pakistan</div>
+const express = require("express");
+const cors = require("cors");
+const fetch = require("node-fetch");
 
-  <button onclick="window.open('https://www.linkedin.com/jobs/search/?keywords=procurement%20manager%20pakistan')">
-    View Real Jobs
-  </button>
-</div>
+const app = express();
+app.use(cors());
 
-<div class="card">
-  <div class="title">Warehouse Supervisor</div>
-  <div class="company">Al Futtaim Group</div>
-  <div class="country">Dubai, UAE</div>
+const API_KEY = "PASTE_YOUR_RAPIDAPI_KEY";
 
-  <button onclick="window.open('https://www.linkedin.com/jobs/search/?keywords=warehouse%20supervisor%20dubai')">
-    View Real Jobs
-  </button>
-</div>
+app.get("/jobs", async (req, res) => {
+  try {
+    const url = "https://jsearch.p.rapidapi.com/search?query=jobs%20Pakistan%20Dubai%20Saudi&num_pages=1";
 
-<div class="card">
-  <div class="title">Driver</div>
-  <div class="company">Saudi Logistics Sector</div>
-  <div class="country">Saudi Arabia</div>
+    const response = await fetch(url, {
+      method: "GET",
+      headers: {
+        "X-RapidAPI-Key": API_KEY,
+        "X-RapidAPI-Host": "jsearch.p.rapidapi.com"
+      }
+    });
 
-  <button onclick="window.open('https://www.bayt.com/en/saudi-arabia/jobs/search/?q=driver')">
-    View Real Jobs
-  </button>
-</div>
+    const data = await response.json();
+    res.json(data);
+
+  } catch (err) {
+    res.status(500).json({ error: "Failed to fetch jobs" });
+  }
+});
+
+app.listen(3000, () => console.log("Server running on port 3000"));
