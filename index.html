@@ -1,27 +1,87 @@
-<div class="card">
-  <div class="title">Procurement Manager</div>
-  <div class="company">Thardeep Rural Development Programme (TRDP)</div>
-  <div class="country">🇵🇰 Pakistan</div>
+<style>
+  body {
+    font-family: Arial;
+    background: #f2f4f8;
+    margin: 0;
+  }
 
-  <button onclick="window.open('https://www.rozee.pk/job-detail/12345')">
-    View & Apply
-  </button>
-</div>
-<div class="card">
-  <div class="title">Warehouse Supervisor</div>
-  <div class="company">Al Futtaim Group</div>
-  <div class="country">🇦🇪 Dubai</div>
+  .container {
+    max-width: 850px;
+    margin: auto;
+    padding: 20px;
+  }
 
-  <button onclick="window.open('https://www.linkedin.com/jobs/view/12345')">
-    View & Apply
-  </button>
-</div>
-<div class="card">
-  <div class="title">Driver</div>
-  <div class="company">Saudi Logistics Co.</div>
-  <div class="country">🇸🇦 Saudi Arabia</div>
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
 
-  <button onclick="window.open('https://www.bayt.com/en/job/12345')">
-    View & Apply
-  </button>
+  .card {
+    background: white;
+    padding: 18px;
+    margin: 15px 0;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+    transition: 0.2s;
+  }
+
+  .card:hover {
+    transform: scale(1.01);
+  }
+
+  .title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+
+  .company {
+    color: #555;
+    margin-bottom: 5px;
+  }
+
+  .country {
+    font-size: 13px;
+    color: #888;
+    margin-bottom: 10px;
+  }
+
+  button {
+    background: #0b5ed7;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background: #084298;
+  }
+</style>
+
+<div class="container">
+  <h1>Rozgar Express 🚀</h1>
+
+  <div class="card">
+    <div class="title">Procurement Manager</div>
+    <div class="company">Thardeep Rural Development Programme (TRDP)</div>
+    <div class="country">Pakistan</div>
+    <button onclick="window.open('https://www.rozee.pk/job-search')">View & Apply</button>
+  </div>
+
+  <div class="card">
+    <div class="title">Warehouse Supervisor</div>
+    <div class="company">Al Futtaim Group</div>
+    <div class="country">Dubai, UAE</div>
+    <button onclick="window.open('https://www.linkedin.com/jobs/search/?keywords=warehouse%20supervisor%20dubai')">View & Apply</button>
+  </div>
+
+  <div class="card">
+    <div class="title">Driver</div>
+    <div class="company">Saudi Logistics Company</div>
+    <div class="country">Saudi Arabia</div>
+    <button onclick="window.open('https://www.bayt.com/en/saudi-arabia/jobs/search/?q=driver')">View & Apply</button>
+  </div>
+
 </div>
